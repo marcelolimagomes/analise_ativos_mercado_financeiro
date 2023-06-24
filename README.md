@@ -9,10 +9,10 @@
 ## No arquivo "tickers_list_to_analisys.csv" contém a lista de ativos (tickers) que são tratados neste projeto
 
 # Escopo:
-## Calcular médias móveis exponenciais para diferentes períodos
-## Calcular o indicador RSI (Índice de Força Relativa) de cada ativo na linha do tempo
-## Calcular a diferença de valores entre a média móvel e o valor da cotação na data de hoje. Assim apontar se o valor na data de hoje está acima ou abaixo do valor da média móvel e concluir se a ação está **descontada** em relação a sua média móvel.
-## Ordenar os ativos com base no valor do desconto
+## * Calcular médias móveis exponenciais para diferentes períodos
+## * Calcular o indicador RSI (Índice de Força Relativa) de cada ativo na linha do tempo
+## * Calcular a diferença de valores entre a média móvel e o valor da cotação na data de hoje. Assim apontar se o valor na data de hoje está acima ou abaixo do valor da média móvel e concluir se a ação está **descontada** em relação a sua média móvel.
+## * Ordenar os ativos com base no valor do desconto
 
 # Aceito sugestões!
 ## Convido vocês a se conectarem comigo no LinkedIn:
