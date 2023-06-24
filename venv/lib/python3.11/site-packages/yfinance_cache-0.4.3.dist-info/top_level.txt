@@ -1,0 +1,2 @@
+tests
+yfinance_cache

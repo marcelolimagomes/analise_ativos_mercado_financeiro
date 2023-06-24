@@ -6,7 +6,10 @@
 
 ## Aqui a intenção é explorar a disciplinas de *Data Science* usando *Python* para implementar modelos de *Machine Learning* em séries temporais
 
+# Orientações:
 ## No arquivo "tickers_list_to_analisys.csv" contém a lista de ativos (tickers) que são tratados neste projeto
+## Para configurar o projeto, execute uma única vez o arquivo "setup.sh"
+## Para executar o projeto na linha de comando, execute o arquivo "run.sh"
 
 # Escopo:
 ## * Calcular médias móveis exponenciais para diferentes períodos
