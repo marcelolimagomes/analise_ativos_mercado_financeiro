@@ -2,7 +2,7 @@
 
 ## Olá, me chamo Marcelo. Seja bem vindo ao meu repositório git, o qual utilizo para compartilhar minha jornada de aprendizado em Data Science, Machine Learning e Big Data. 
 
-## Este é um pequeno projeto odne eu faço a análise de ativos do mercado financeiro com base em histórico de cotações e predições sobre tendências futuras baseadas em modelos de Machine Learning utilizando a linguagem Python
+## Este é um pequeno projeto odne eu faço a análise de ativos do mercado financeiro com base em histórico de cotações e predições  baseadas em Médias Móveis e Modelos de Machine Learning utilizando a linguagem Python
 
 ## Aqui a intenção é explorar a disciplinas de *Data Science* usando *Python* para implementar modelos de *Machine Learning* em séries temporais
 
