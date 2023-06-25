@@ -98,18 +98,19 @@ def calc_ema_periods(df: pd.DataFrame, periods_of_time: any, close_price='close'
 def calc_RSI(df: pd.DataFrame, close_price='close', window=14):
     aux = df.copy()
     try:
-        aux['change'] = aux[close_price].diff()
-        aux['gain'] = aux.change.mask(aux.change < 0, 0.0)
-        aux['loss'] = -aux.change.mask(aux.change > 0, -0.0)
-        aux['avg_gain'] = rma(aux.gain.to_numpy(), window)
-        aux['avg_loss'] = rma(aux.loss.to_numpy(), window)
+        if df['symbol'].count() > 14:
+            aux['change'] = aux[close_price].diff()
+            aux['gain'] = aux.change.mask(aux.change < 0, 0.0)
+            aux['loss'] = -aux.change.mask(aux.change > 0, -0.0)
+            aux['avg_gain'] = rma(aux.gain.to_numpy(), window)
+            aux['avg_loss'] = rma(aux.loss.to_numpy(), window)
 
-        aux['rs'] = aux.avg_gain / aux.avg_loss
-        aux['rsi'] = 100 - (100 / (1 + aux.rs))
-
-
+            aux['rs'] = aux.avg_gain / aux.avg_loss
+            aux['rsi'] = 100 - (100 / (1 + aux.rs))
+        else:
+            aux['rsi'] = 0.0    
     except Exception as error:
-        print('Erro no calculo do RSI> ', df['symbol'], ' - Data: ', df['date_time'])
+        print('Erro no calculo do RSI> ', df['symbol'].values[0], ' - Data: ', df['date_time'].values[0])
         print(error)
         aux['rsi'] = 0.0
     finally:
