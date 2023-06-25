@@ -43,7 +43,7 @@ def load_dataset(load_cache = True, data_file = './src/data/ibov.json') -> pd.Da
     else:
         data = download_data('2013-01-01', symbols)
         dataset = convert_downloaded_data(data)
-    print(dataset.info())
+    #print(dataset.info())
     return dataset
 
 def get_tickers() -> list:
@@ -86,6 +86,6 @@ def download_data(start_date='', tickers=[]) -> pd.DataFrame:
     return data
 
 def print_descontados(df: pd.DataFrame):
-    filter = df[df.index == df.index.max()]
+    filter = df[df.index == df.index.max()][['open','high', 'low', 'close', 'adj_close', 'volume', 'symbol', 'ema_200p', 'ema_200p_diff', 'rsi']]
     print('>>> 50 Ações mais descontadas:')
     print(filter.sort_values(by='ema_200p_diff', ascending=True).head(50).round(2))

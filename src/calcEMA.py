@@ -44,7 +44,7 @@ def calc_ema_days(df: pd.DataFrame, period_of_time: str, close_price='close') ->
         case '5y':
             days = 365 * 5
         case defaul:
-            raise Exception('Inform a valid period of time> ' + valid_times)
+            raise Exception('Infome um período válido> ' + valid_times)
 
     # print('Days to calc> ', days)
 
@@ -60,13 +60,11 @@ def calc_ema_days(df: pd.DataFrame, period_of_time: str, close_price='close') ->
         count_occours = df.loc[mask].shape[0]
         # print('Tamanho DF> ', count_occours)
         if count_occours == 0:
-            print('No records on informed period of times> ' + period_of_time)
+            print('Não foi encontrado registros no período informado> ' + period_of_time)
             df[mme_price] = None
         else:
-            df[mme_price] = df[close_price].ewm(span=count_occours,
-                                                min_periods=count_occours).mean()
-            df[diff_price] = round(((df[close_price] - df[mme_price]
-                                     ) / df[mme_price]) * 100, 2)
+            df[mme_price] = df[close_price].ewm(span=count_occours, min_periods=count_occours).mean()
+            df[diff_price] = round(((df[close_price] - df[mme_price]) / df[mme_price]) * 100, 2)
     else:
         df[mme_price] = None
         df[diff_price] = None
@@ -82,16 +80,14 @@ def calc_ema_periods(df: pd.DataFrame, periods_of_time: any, close_price='close'
         mme_price = "ema_" + str(periods) + 'p'
         s_diff_price = mme_price + "_diff"
         if periods > count_occours:
-            print('No records on informed period of times> ' + str(periods))
+            print('Não foi encontrado registros no período informado> ' + str(periods))
             df[mme_price] = None
             if diff_price:
                 df[s_diff_price] = None
         else:
-            df[mme_price] = df[close_price].ewm(span=periods,
-                                                min_periods=periods).mean()
+            df[mme_price] = df[close_price].ewm(span=periods, min_periods=periods).mean()
             if diff_price:
-                df[s_diff_price] = round(((df[close_price] - df[mme_price]
-                                           ) / df[mme_price]) * 100, 2)
+                df[s_diff_price] = round(((df[close_price] - df[mme_price]) / df[mme_price]) * 100, 2)
     return df
 
 
