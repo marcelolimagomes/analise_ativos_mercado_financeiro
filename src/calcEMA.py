@@ -6,16 +6,17 @@ valid_times = ['1mo', '2mo', '3mo', '6mo', '1y', '2y', '3y', '4y', '5y']
 
 
 def run_calc_emas(df: pd.DataFrame, column='close', times=False, periods=True) -> pd.DataFrame:
-    # Calc EMA for valid_times
+    _df = df.copy()
+    # Calc EMA for valid_times    
     if times:
         for _time in valid_times:
-            df = calc_ema_days(df, _time, close_price=column)
+            _df = calc_ema_days(_df, _time, close_price=column)
 
     if periods:
-        df = calc_ema_periods(df, [200], close_price=column, diff_price=True)
+        _df = calc_ema_periods(_df, [200], close_price=column, diff_price=True)
     # Calc RSI
-    df = calc_RSI(df, column)
-    return df
+    _df = calc_RSI(_df, column)
+    return _df
 
     # df.to_csv(s['symbol'] + '.csv', sep=';', decimal=',')
     # print(df)
@@ -95,25 +96,25 @@ def calc_ema_periods(df: pd.DataFrame, periods_of_time: any, close_price='close'
 
 
 def calc_RSI(df: pd.DataFrame, close_price='close', window=14):
-    print('calc_RSI.df.size> ', df.size)
+    aux = df.copy()
     try:
-        df['change'] = df[close_price].diff()
-        df['gain'] = df.change.mask(df.change < 0, 0.0)
-        df['loss'] = -df.change.mask(df.change > 0, -0.0)
-        df['avg_gain'] = rma(df.gain.to_numpy(), window)
-        df['avg_loss'] = rma(df.loss.to_numpy(), window)
+        aux['change'] = aux[close_price].diff()
+        aux['gain'] = aux.change.mask(aux.change < 0, 0.0)
+        aux['loss'] = -aux.change.mask(aux.change > 0, -0.0)
+        aux['avg_gain'] = rma(aux.gain.to_numpy(), window)
+        aux['avg_loss'] = rma(aux.loss.to_numpy(), window)
 
-        df['rs'] = df.avg_gain / df.avg_loss
-        df['rsi'] = 100 - (100 / (1 + df.rs))
+        aux['rs'] = aux.avg_gain / aux.avg_loss
+        aux['rsi'] = 100 - (100 / (1 + aux.rs))
 
-        df.drop(columns=['change', 'gain', 'loss',
-                         'avg_gain', 'avg_loss', 'rs'], inplace=True)
+
     except Exception as error:
-        print('Erro no calculo do RSI')
+        print('Erro no calculo do RSI> ', df['symbol'], ' - Data: ', df['date_time'])
         print(error)
-        df['rsi'] = 0.0
-
-    return df
+        aux['rsi'] = 0.0
+    finally:
+        aux.drop(columns=['change', 'gain', 'loss', 'avg_gain', 'avg_loss', 'rs'], inplace=True, errors='ignore')
+    return aux
 
 
 def rma(x, n):
