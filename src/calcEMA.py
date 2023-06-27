@@ -1,13 +1,14 @@
 import datetime
 import pandas as pd
 import numpy as np
+import gc
 
 valid_times = ['1mo', '2mo', '3mo', '6mo', '1y', '2y', '3y', '4y', '5y']
 
 
 def run_calc_emas(df: pd.DataFrame, column='close', times=False, periods=True) -> pd.DataFrame:
     _df = df.copy()
-    # Calc EMA for valid_times    
+    # Calc EMA for valid_times
     if times:
         for _time in valid_times:
             _df = calc_ema_days(_df, _time, close_price=column)
@@ -16,6 +17,7 @@ def run_calc_emas(df: pd.DataFrame, column='close', times=False, periods=True) -
         _df = calc_ema_periods(_df, [200], close_price=column, diff_price=True)
     # Calc RSI
     _df = calc_RSI(_df, column)
+    gc.collect()
     return _df
 
     # df.to_csv(s['symbol'] + '.csv', sep=';', decimal=',')
@@ -60,11 +62,14 @@ def calc_ema_days(df: pd.DataFrame, period_of_time: str, close_price='close') ->
         count_occours = df.loc[mask].shape[0]
         # print('Tamanho DF> ', count_occours)
         if count_occours == 0:
-            print('Não foi encontrado registros no período informado> ' + period_of_time)
+            print(
+                'Não foi encontrado registros no período informado> ' + period_of_time)
             df[mme_price] = None
         else:
-            df[mme_price] = df[close_price].ewm(span=count_occours, min_periods=count_occours).mean()
-            df[diff_price] = round(((df[close_price] - df[mme_price]) / df[mme_price]) * 100, 2)
+            df[mme_price] = df[close_price].ewm(
+                span=count_occours, min_periods=count_occours).mean()
+            df[diff_price] = round(
+                ((df[close_price] - df[mme_price]) / df[mme_price]) * 100, 2)
     else:
         df[mme_price] = None
         df[diff_price] = None
@@ -85,9 +90,11 @@ def calc_ema_periods(df: pd.DataFrame, periods_of_time: any, close_price='close'
             if diff_price:
                 df[s_diff_price] = None
         else:
-            df[mme_price] = df[close_price].ewm(span=periods, min_periods=periods).mean()
+            df[mme_price] = df[close_price].ewm(
+                span=periods, min_periods=periods).mean()
             if diff_price:
-                df[s_diff_price] = round(((df[close_price] - df[mme_price]) / df[mme_price]) * 100, 2)
+                df[s_diff_price] = round(
+                    ((df[close_price] - df[mme_price]) / df[mme_price]) * 100, 2)
     return df
 
 
@@ -104,13 +111,16 @@ def calc_RSI(df: pd.DataFrame, close_price='close', window=14):
             aux['rs'] = aux.avg_gain / aux.avg_loss
             aux['rsi'] = 100 - (100 / (1 + aux.rs))
         else:
-            aux['rsi'] = 0.0    
+            aux['rsi'] = 0.0
     except Exception as error:
-        print('Erro no calculo do RSI> ', df['symbol'].values[0], ' - Data: ', df['date_time'].values[0])
+        print('Erro no calculo do RSI> ',
+              df['symbol'].values[0], ' - Data: ', df['date_time'].values[0])
         print(error)
         aux['rsi'] = 0.0
     finally:
-        aux.drop(columns=['change', 'gain', 'loss', 'avg_gain', 'avg_loss', 'rs'], inplace=True, errors='ignore')
+        aux.drop(columns=['change', 'gain', 'loss', 'avg_gain',
+                 'avg_loss', 'rs'], inplace=True, errors='ignore')
+    gc.collect()
     return aux
 
 
