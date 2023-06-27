@@ -12,12 +12,12 @@
 ## Para executar o projeto na linha de comando, execute o arquivo "run.sh"
 
 # Escopo:
-## * Download do histórico de contações
-## * Tratamento dos dados e criação de um dataset consolidado
-## * Calcular médias móveis exponenciais para diferentes períodos
-## * Calcular o indicador RSI (Índice de Força Relativa) de cada ativo na linha do tempo
-## * Calcular a diferença de valores entre a média móvel e o valor da cotação na data de hoje. Assim apontar se o valor na data de hoje está acima ou abaixo do valor da média móvel e concluir se a ação está *descontada* em relação a sua média móvel. (>>Em andamento<<)
-## * Ordenar os ativos com base no valor do desconto (>>Em andamento<<)
+## * Download do histórico de contações. (DONE)
+## * Tratamento dos dados e criação de um dataset consolidado. (DONE)
+## * Calcular médias móveis exponenciais para diferentes períodos. (DONE)
+## * Calcular o indicador RSI (Índice de Força Relativa) de cada ativo na linha do tempo. (DONE)
+## * Calcular a diferença de valores entre a média móvel e o valor da cotação na data de hoje. Assim apontar se o valor na data de hoje está acima ou abaixo do valor da média móvel e concluir se a ação está *descontada* em relação a sua média móvel. (DONE)
+## * Ordenar os ativos com base no valor do desconto e imprime resultado final. (DONE)
 
 # Aceito sugestões!
 ## Convido vocês a se conectarem comigo no LinkedIn:
