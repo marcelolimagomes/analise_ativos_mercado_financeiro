@@ -1,6 +1,6 @@
 # Análise de ativos do mercado financeiro com base no histórico de preços de ativos listados na B3 BOVESPA
 
-## Olá, me chamo Marcelo. Seja bem vindo ao meu repositório git, o qual utilizo para compartilhar minha jornada de aprendizado em Data Science, Machine Learning e Big Data. 
+## Olá, me chamo Marcelo. Seja bem-vindo ao meu repositório git, o qual utilizo para compartilhar minha jornada de aprendizado em Data Science, Machine Learning e Big Data. 
 
 ## Este é um pequeno projeto onde eu faço a análise de ativos do mercado financeiro com base em histórico de cotações e predições baseadas em Médias Móveis e Modelos de Machine Learning utilizando a linguagem Python
 
