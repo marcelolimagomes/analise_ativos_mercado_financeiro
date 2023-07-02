@@ -13,7 +13,7 @@
 ## Para executar o projeto na linha de comando, execute o arquivo "run.sh"
 
 # Escopo:
-## * Download do histórico de contações. (DONE)
+## * Download do histórico de cotações. (DONE)
 ## * Tratamento dos dados e criação de um dataset consolidado. (DONE)
 ## * Calcular médias móveis exponenciais para diferentes períodos. (DONE)
 ## * Calcular o indicador RSI (Índice de Força Relativa) de cada ativo na linha do tempo. (DONE)
