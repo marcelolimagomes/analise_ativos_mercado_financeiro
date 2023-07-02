@@ -1,4 +1,5 @@
 .env
+.env3.10
 .vscode
 *.ipynb_checkpoints*
 __pycache__
