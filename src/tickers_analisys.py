@@ -25,9 +25,9 @@ def process(load_cache=True):
     print('Lista ordenada por *Ações com Desconto*:', emas_dataset.index.max())
     print_descontados(emas_dataset)
 
-    if not os.path.exists(data_file):
-        # emas_dataset.to_json(data_file, orient='records', date_unit='s', date_format='epoch')
-        emas_dataset.to_csv(data_file, sep=';')
+    print('Atualizando cache...')
+    emas_dataset.sort_values(['date', 'symbol'], ascending=[True, True], inplace=True)
+    emas_dataset.to_csv(data_file, sep=';')
 
     return emas_dataset
 
