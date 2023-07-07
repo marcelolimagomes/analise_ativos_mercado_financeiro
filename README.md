@@ -20,6 +20,7 @@
 ## * Calcular a diferença de valores entre a média móvel e o valor da cotação na data de hoje. Assim apontar se o valor na data de hoje está acima ou abaixo do valor da média móvel e concluir se a ação está *descontada* em relação a sua média móvel. (DONE)
 ## * Ordenar os ativos com base no valor do desconto e imprime resultado final. (DONE)
 ## * Predição de valores de ações com base nos valores históricos. (DONE)
+## * Análise de Sentimento de Ações com base em notícias em sites especializados (DONE)
 
 # Aceito sugestões!
 ## Convido vocês a se conectarem comigo no LinkedIn:
