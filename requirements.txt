@@ -7,3 +7,4 @@ pycaret[full]
 feedparser
 nltk
 leia-br
+tweepy
