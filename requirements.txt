@@ -3,8 +3,9 @@ numpy
 scikit-learn
 yfinance
 yfinance-cache
-pycaret[full]
+pycaret
 feedparser
 nltk
 leia-br
 tweepy
+python-binance
